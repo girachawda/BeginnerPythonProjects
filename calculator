@@ -1,0 +1,31 @@
+# simple calculator with two numbers
+
+amount = input("How many numbers would you like to input?")
+
+while amount < 2:
+    num1 = int(input("Enter Number One: "))
+    choice = input("Enter which function to use addition (+), subtraction (-),\
+                    multiplication (x), division (/), exponent (**): ")
+    num2 = int(input("Enter Number Two: "))
+
+# functions
+addition = num1 + num2
+subtraction = num1 - num2
+multiplication = num1 * num2
+division = num1 / num2
+exponentiation = num1 ** num2
+
+# when to use which function
+
+if choice == "+":
+    print(addition)
+elif choice == "-":
+    print(subtraction)
+elif choice == "*":
+    print(multiplication)
+elif choice == "/":
+    print(division)
+elif choice == "**":
+    print(exponentiation)
+else:
+    print("ERROR, choose a proper function")
