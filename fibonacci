@@ -1,0 +1,22 @@
+# exercises from practicepython.org | 13 - fibonnaci
+
+# get the number from the user in order to see how many numbers they want printed
+def get_number():
+    num = int(input("How many numbers of the fibonnaci sequence do you want printed? "))
+    return num
+
+def fibonnaci(size):
+    num1 = 0
+    num2 = 1
+    fib = [num1, num2]
+    counter = -1
+
+# uses the input from user and prints sequence
+    while counter < size - 3:
+        num = num2 + num1
+        fib.append(num)
+        num1 = num2
+        num2 = num
+        counter += 1
+    return fib
+print(fibonnaci(get_number()))
