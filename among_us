@@ -1,0 +1,32 @@
+import random
+
+print("WELCOME TO PYTHON AMONG US")
+player = []
+counter = 0
+
+
+while counter <= 11:
+    name = input("What is your name? (Print 'xxx' to quit): ").lower()
+    if name == 'xxx':
+        break
+    player.append(name)
+    counter += 1
+
+
+imposter = random.choice(player)
+
+while len(player) > 2:
+
+    vote = input("Who would you like to vote off? ").lower()
+    if vote == imposter:
+        print(f"The imposter was voted off. Crewmates win!")
+
+
+    elif vote != imposter:
+        print(f"{vote} was NOT the imposter")
+        player.remove(vote)
+        print(f"Players left: {player}")
+
+    if len(player) == 2:
+        print(f"Imposter wins! {imposter} was the imposter")
+        break
