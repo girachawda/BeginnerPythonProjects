@@ -1,0 +1,149 @@
+import time
+
+print("Welcome to the AKgamechcrisis clinic!")
+totalcost = []
+userage = int(input("What's your age?: "))
+
+# finding out the age in order to price accordingly
+if userage < 17:
+    title = "Kid"
+elif userage < 64:
+    title = "Adult"
+else:
+    title = "Senior"
+
+# a loop to continue to as what they want checked up until they quit
+while True:
+    visit = int(input("What do you want checked up today? (Click 1 for BMI, "
+                      "2 for COVID Test, 3 for Memory, 4 for Eyesight and 5 to quit): "))
+
+    if visit == 1:
+        def bmicalc():
+            weight = input("\nEnter your weight in KG: ")
+            height = input("Enter your height in M: ")
+
+            # calculating the BMI
+            bmi = float(weight) / float(height) ** 2
+            bmi = round(bmi, 2)
+
+            print(bmi)
+
+            # what it prints based on BMI
+            if bmi < 18:
+                return ("You are underweight\n")
+            elif bmi > 18.1 and bmi < 25.5:
+                return ("You are in the normal range\n")
+            else:
+                return ("You are overweight\n")
+
+        print(bmicalc())
+
+    elif visit == 2:
+       def COVIDTest():
+          temp = int(input("\nPlease take your temperature and enter it in celcius: "))
+
+          # user gets directed to questionare if celcius is over 38 degrees celcius
+          if temp >= 38:
+              print("You have a fever, you are now going to be directed to a questionnare")
+
+              # the questionnare, if any answer is yes it tells you have COVID
+              symptoms = ["Fever", "Continuous Coughing", "Shortness of Breath", "Loss of Taste", "Sore Throat",
+                          "Headache", "Nausea/Vomiting", "Fatigue"]
+              print("\n", symptoms)
+              answer = input(f"Do you have any of these symptoms listed above?(yes/no): ").upper()
+              answer1 = input("In the last 14 days, have you or anyone you live with travelled outside of Canada?(yes/no) : ").upper()
+              answer2 = input("In the last 14 days, have you been identified as a “close contact” of someone who currently has COVID-19?(yes/no): ").upper()
+              answer3 = input("Is anyone you live with currently experiencing any new COVID-19 symptoms "
+                             "and/or waiting for test results after experiencing symptoms?(yes/no): ").upper()
+
+              # any answer that is yes means you could possibly have COVID
+              if answer or answer1 or answer2 or answer3 == "YES":
+                  return "\nYou could potentially have COVID-19. Please self-quarantine for 14 days and refrain from having contact with people."
+              elif answer or answer1 or answer2 or answer3 == "NO":
+                  return "\nIt seems like you have not been exposed to COVID-19. Please continue to stay socially distance and wear masks indoors."
+              else:
+                  return "Invalid Choice."
+
+          elif temp < 38:
+              return "You do not have a fever, there is no need for you to take a questionnare or a COVID Test\n"
+
+
+       print(COVIDTest())
+
+    elif visit == 3:
+        wordslist = ["TRAIN", "LAMP", "PLANT", "SHELF", "BLANKET", "GRASS", "GARAGE", "AIRPLANE", "TRUCK", "ENORMITY",
+                     "ADAPTER", "CONCRETE"]
+        def memory():
+            print(f"\nREMEMBER THE FOLLOWING WORDS You have 20 seconds to try to remember as much as you can:\n {wordslist}")
+            time.sleep(20)
+            return "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+        print(memory())
+
+        counter = 0
+        while True:
+            recall = input("Type in one of the words you remember (Type quit when you cannot remember more): ").upper()
+            if recall in wordslist:
+                    counter +=1
+            elif recall == "QUIT":
+                if counter <= 4:
+                    grade = "Your short term memory is bad"
+                elif counter <= 7:
+                    grade = "Your short term memory is within good range."
+                else:
+                    grade = "You have great short term memory!"
+                print(f"You got {counter} words right! The normal range for people is getting between 5-7 right!"
+                      f"\nParticularly for you, {grade}\n\n")
+                break
+            else:
+                continue
+
+        # the pricing of getting a memory test
+        if title == "Kid":
+            price = 25
+            totalcost.append(price)
+        elif title == "Adult":
+            price = 50
+            totalcost.append(price)
+        elif title == "Senior":
+            price = 35
+            totalcost.append(price)
+
+    elif visit == 4:
+        print("We are going to check for Visual Acuity. Please follow the instructions:\n")
+        time.sleep(2)
+        ok = input("1 Place yourself 1 meter from the screen. \n"
+                   "2 If you have glasses for distance vision or glasses with progressive lenses, keep them on.\n"
+                   "3 Without pressing on the eyelid, be ready to cover your left/right eye with your hand. \n"
+                   "4 Indicate which way the open side of the is facing with your keyboard or mouse. \n"
+                   "Type 'ok' to continue: ").upper()
+        open_side = input("Cover your right eye. Which way is the open side of the letter(up/down/right/left) \nƎ :").upper()
+        if open_side == "LEFT":
+            answer = "You do not have visual acuity"
+        else:
+            answer = "It appears that you have symptoms of visual acuity. Please have it checked out by your optometerist."
+        open_side2 = input("Cover your left eye.Which way is the open side of the letter(up/down/right/left) \nE :").upper()
+        if open_side == "RIGHT":
+            answer1 = "You do not have visual acuity"
+        else:
+            answer1 = "It appears that you have symptoms of visual acuity. Please have it checked out by your optometerist."
+
+        # the pricing of getting your eyes tested
+        if title == "Kid":
+            price = 25
+            totalcost.append(price)
+        elif title == "Adult":
+            price = 60
+            totalcost.append(price)
+        elif title == "Senior":
+            price = 30
+            totalcost.append(price)
+
+    elif visit == 5:
+        total = sum(totalcost)
+        print(f"Thank you for visiting the AKgamechcrisis clinic. Your total is ${total}. "
+              f"Please pay at the front counter. Have a great day!")
+        break
+
+    # if the user types any other number
+    else:
+        print("Invalid Choice. Try again.")
