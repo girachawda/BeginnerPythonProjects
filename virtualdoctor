@@ -1,4 +1,4 @@
-import time
+impimport time
 
 print("Welcome to the AKgamechcrisis clinic!")
 totalcost = []
@@ -22,13 +22,13 @@ while True:
             weight = input("\nEnter your weight in KG: ")
             height = input("Enter your height in M: ")
 
-            # calculating the BMI
+            # the math behind calculating the BMI
             bmi = float(weight) / float(height) ** 2
             bmi = round(bmi, 2)
 
             print(bmi)
 
-            # what it prints based on BMI
+            # what it prints based on BMI performance
             if bmi < 18:
                 return ("You are underweight\n")
             elif bmi > 18.1 and bmi < 25.5:
@@ -50,9 +50,12 @@ while True:
               symptoms = ["Fever", "Continuous Coughing", "Shortness of Breath", "Loss of Taste", "Sore Throat",
                           "Headache", "Nausea/Vomiting", "Fatigue"]
               print("\n", symptoms)
+
+              # all the general screening questions
               answer = input(f"Do you have any of these symptoms listed above?(yes/no): ").upper()
               answer1 = input("In the last 14 days, have you or anyone you live with travelled outside of Canada?(yes/no) : ").upper()
-              answer2 = input("In the last 14 days, have you been identified as a “close contact” of someone who currently has COVID-19?(yes/no): ").upper()
+              answer2 = input("In the last 14 days, have you been identified as a “close contact” of someone who currently "
+                              "has COVID-19?(yes/no): ").upper()
               answer3 = input("Is anyone you live with currently experiencing any new COVID-19 symptoms "
                              "and/or waiting for test results after experiencing symptoms?(yes/no): ").upper()
 
@@ -81,6 +84,7 @@ while True:
 
         counter = 0
         while True:
+            # checking if the user can remember any words
             recall = input("Type in one of the words you remember (Type quit when you cannot remember more): ").upper()
             if recall in wordslist:
                     counter +=1
@@ -116,16 +120,27 @@ while True:
                    "3 Without pressing on the eyelid, be ready to cover your left/right eye with your hand. \n"
                    "4 Indicate which way the open side of the is facing with your keyboard or mouse. \n"
                    "Type 'ok' to continue: ").upper()
-        open_side = input("Cover your right eye. Which way is the open side of the letter(up/down/right/left) \nƎ :").upper()
-        if open_side == "LEFT":
-            answer = "You do not have visual acuity"
+
+        open_side = input("Cover your right eye. Which way is the open side of the letter(up/down/right/left) \nƎ : ").upper()
+        open_side2 = input("Keep your right eye covered. Which way is the open side of the letter(up/down/right/left) \nE : ").upper()
+        open_side3 = input("Cover your left eye. Which way is the open side of the letter(up/down/right/left) \nƎ : ").upper()
+        open_side4 = input("Keep your left eye covered. Which way is the open side of the letter(up/down/right/left) \nE : ").upper()
+
+        # initializing answers from correct to incorrect for left answers
+        if open_side or open_side3 == "LEFT":
+            answer = "yes"
         else:
-            answer = "It appears that you have symptoms of visual acuity. Please have it checked out by your optometerist."
-        open_side2 = input("Cover your left eye.Which way is the open side of the letter(up/down/right/left) \nE :").upper()
-        if open_side == "RIGHT":
-            answer1 = "You do not have visual acuity"
+            answer = "no"
+        # initializing answers from correct to incorrect for right answers
+        if open_side2 or open_side4 == "RIGHT":
+            answer = "yes"
         else:
-            answer1 = "It appears that you have symptoms of visual acuity. Please have it checked out by your optometerist."
+            answer = "no"
+
+        if answer == "yes":
+            print("You do not have visual acuity")
+        elif answer == "no":
+            print("It appears that you have symptoms of visual acuity. Please have it checked out by your optometerist.")
 
         # the pricing of getting your eyes tested
         if title == "Kid":
@@ -139,6 +154,7 @@ while True:
             totalcost.append(price)
 
     elif visit == 5:
+        # prints the final cost before user quits
         total = sum(totalcost)
         print(f"Thank you for visiting the AKgamechcrisis clinic. Your total is ${total}. "
               f"Please pay at the front counter. Have a great day!")
@@ -146,4 +162,4 @@ while True:
 
     # if the user types any other number
     else:
-        print("Invalid Choice. Try again.")
+        print("Invalid Choice. Try again.\n")
