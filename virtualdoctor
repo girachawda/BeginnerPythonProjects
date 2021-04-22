@@ -1,4 +1,4 @@
-impimport time
+import time
 
 print("Welcome to the AKgamechcrisis clinic!")
 totalcost = []
@@ -118,29 +118,27 @@ while True:
         ok = input("1 Place yourself 1 meter from the screen. \n"
                    "2 If you have glasses for distance vision or glasses with progressive lenses, keep them on.\n"
                    "3 Without pressing on the eyelid, be ready to cover your left/right eye with your hand. \n"
-                   "4 Indicate which way the open side of the is facing with your keyboard or mouse. \n"
+                   "4 Indicate which way the open side of the 'E' is facing by typing it in. \n"
                    "Type 'ok' to continue: ").upper()
 
-        open_side = input("Cover your right eye. Which way is the open side of the letter(up/down/right/left) \nƎ : ").upper()
-        open_side2 = input("Keep your right eye covered. Which way is the open side of the letter(up/down/right/left) \nE : ").upper()
-        open_side3 = input("Cover your left eye. Which way is the open side of the letter(up/down/right/left) \nƎ : ").upper()
-        open_side4 = input("Keep your left eye covered. Which way is the open side of the letter(up/down/right/left) \nE : ").upper()
+        print("\nCover your right eye.")
+        time.sleep(2)
+        open_side = input("Which way is the open side of the letter(right/left) Ǝ ").upper()
+        print("\nKeep your right eye covered.")
+        time.sleep(2)
+        open_side2 = input("Which way is the open side of the letter(right/left): E ").upper()
+        print("\nCover your left eye.")
+        time.sleep(2)
+        open_side3 = input("Which way is the open side of the letter(right/left): Ǝ ").upper()
+        print("\nKeep your right eye covered.")
+        time.sleep(2)
+        open_side4 = input("Which way is the open side of the letter(right/left): E ").upper()
 
         # initializing answers from correct to incorrect for left answers
-        if open_side or open_side3 == "LEFT":
-            answer = "yes"
+        if open_side and open_side3 == "LEFT" and open_side2 and open_side4 == "RIGHT":
+            print("\nYou do not have visual acuity")
         else:
-            answer = "no"
-        # initializing answers from correct to incorrect for right answers
-        if open_side2 or open_side4 == "RIGHT":
-            answer = "yes"
-        else:
-            answer = "no"
-
-        if answer == "yes":
-            print("You do not have visual acuity")
-        elif answer == "no":
-            print("It appears that you have symptoms of visual acuity. Please have it checked out by your optometerist.")
+            print("\nIt appears that you have symptoms of visual acuity. Please have it checked out by your optometerist.")
 
         # the pricing of getting your eyes tested
         if title == "Kid":
@@ -156,7 +154,7 @@ while True:
     elif visit == 5:
         # prints the final cost before user quits
         total = sum(totalcost)
-        print(f"Thank you for visiting the AKgamechcrisis clinic. Your total is ${total}. "
+        print(f"\nThank you for visiting the AKgamechcrisis clinic. Your total is ${total}. "
               f"Please pay at the front counter. Have a great day!")
         break
 
